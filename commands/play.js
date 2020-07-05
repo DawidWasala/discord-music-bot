@@ -36,6 +36,7 @@ module.exports = {
         } else {
             try {
                 songInfo = await ytsr(args.join(' '), {limit: 1})
+                console.log(songInfo)
                 song = {
                     title: songInfo.items[0].title,
                     url: songInfo.items[0].link,
@@ -83,6 +84,7 @@ function play(song, message) {
     }
     //TODO catch too many redirects and 416 and Error: read ECONNRESET and install forever package
     //TODO songs are finishing 5 seconds to early
+    console.log(ytdl(song.url))
     const dispatcher = serverQueue.connection
         .play(ytdl(song.url, {highWaterMark: 1<<25}))
         .on("finish", () => {
