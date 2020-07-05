@@ -5,7 +5,7 @@ module.exports = {
     name: 'play',
     description: 'Plays a song',
     async execute(message){
-
+        console.log('executing' + message)
         const serverQueue = message.client.queue.get(message.guild.id)
 
         const args = message.content.split(" ");
